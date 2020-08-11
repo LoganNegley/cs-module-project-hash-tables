@@ -99,7 +99,7 @@ class HashTable:
         # else: 
         #     self.hash_table[self.hash_index(key)] = None
 
-        
+
 
 
     def get(self, key):
@@ -123,6 +123,49 @@ class HashTable:
         Implement this.
         """
         # Your code here
+
+
+
+        ######Linked List functions#########
+    def linked_list_find(self, key):
+        cur_node = self.head
+
+        while cur_node is not None:
+            if cur_node.key == key:
+                return cur_node
+            cur_node.next
+
+        return None
+
+    def linked_list_delete(self, key):
+        cur_node = self.head
+
+        if cur_node.key == key:
+            self.head = cur_node.next
+            return cur_node
+
+        prev_node = cur_node
+        cur_node = cur_node.next
+
+        while cur_node is not None:
+            if cur_node.key == key:
+                prev_node.next = cur_node.next
+                return cur_node
+
+        return None
+
+    def linked_list_insert_at_head(self, key, value):
+        node = HashTableEntry(key, value)
+        node.next = self.head
+        self.head = node
+
+    def linked_list_insert_or_overwrite_value(self, key, value):
+        node = self.linked_list_find(value)
+
+        if node is None:
+            self.linked_list_insert_at_head(HashTableEntry(key, value))
+        else: 
+            node.value = value
 
 
 
