@@ -82,7 +82,28 @@ class HashTable:
         Implement this.
         """
         # Your code here
-        self.hash_table[self.hash_index(key)] = value
+        #######Without collision#####
+        # self.hash_table[self.hash_index(key)] = value
+        ######With collision########
+        new_entry = HashTableEntry(key,value)
+
+        cur_node = self.hash_table[self.hash_index(key)]
+
+        if cur_node is None:
+            self.hash_table[self.hash_index(key)] = new_entry
+            self.num_of_items += 1
+            return
+
+        while cur_node is not None and cur_node.key != key:
+            prev_node = cur_node
+            cur_node = cur_node.next
+
+        if cur_node is None:
+            prev_node.next = new_entry
+            self.num_of_items += 1
+        elif cur_node.key == key:
+            print(f"The key, '{key}' was found and will update to new value '{value}'")
+            cur_node.value == value
 
     def delete(self, key):
         """
@@ -99,6 +120,24 @@ class HashTable:
         # else: 
         #     self.hash_table[self.hash_index(key)] = None
 
+        #####With collison#####
+        cur_node = self.hash_table[self.hash_index(key)]
+
+        if cur_node.key == key:
+            self.hash_table[self.hash_index(key)] = cur_node.next
+            self.num_of_items -= 1
+
+        while cur_node is not None and cur_node.key != key:
+            prev_node = cur_node
+            cur_node = cur_node.next
+
+        if cur_node is None:
+            print('Key does not exist')
+            return cur_node
+        prev_node.next = cur_node.next
+        self.num_of_items -= 1
+
+ 
 
 
 
@@ -111,9 +150,22 @@ class HashTable:
         Implement this.
         """
         # Your code here
-        if(self.hash_table[self.hash_index(key)] == None):
+        ########Without collision#########
+        # if(self.hash_table[self.hash_index(key)] == None):
+        #     return None
+        # else: return self.hash_table[self.hash_index(key)]
+        #########With collision###########
+        cur_node = self.hash_table[self.hash_index(key)]
+
+        while cur_node is not None:
+            if cur_node.key == key:
+                 return cur_node.value
+            else:
+                cur_node = cur_node.next
+
+        if cur_node == None:
             return None
-        else: return self.hash_table[self.hash_index(key)]
+        return cur_node.value
 
     def resize(self, new_capacity):
         """
