@@ -22,6 +22,8 @@ class HashTable:
         # Your code here
         self.capacity = capacity
         self.hash_table = [None] * capacity
+        self.num_of_items = 0
+        self.head = None
 
     def get_num_slots(self):
         """
@@ -38,7 +40,7 @@ class HashTable:
         Return the load factor for this hash table.
         """
         # Your code here
-
+        return self.num_of_items / self.capacity
 
     def fnv1(self, key):
         """
@@ -89,11 +91,15 @@ class HashTable:
         Implement this.
         """
         # Your code here
-        if(self.hash_table[self.hash_index(key)] == None):
-            print("Key not found")
-            return
-        else: 
-            self.hash_table[self.hash_index(key)] = None
+
+        ########## Without collision ###########
+        # if(self.hash_table[self.hash_index(key)] == None):
+        #     print("Key not found")
+        #     return
+        # else: 
+        #     self.hash_table[self.hash_index(key)] = None
+
+        
 
 
     def get(self, key):
