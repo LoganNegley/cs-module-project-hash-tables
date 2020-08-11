@@ -42,21 +42,19 @@ class HashTable:
         # Your code here
         return self.num_of_items / self.capacity
 
-    def fnv1(self, key):
-        """
-        FNV-1 Hash, 64-bit
+    # def fnv1(self, key):
+    #     """
+    #     FNV-1 Hash, 64-bit
 
-        Implement this, and/or DJB2.
-        """
+    #     Implement this, and/or DJB2.
+    #     """
 
-        # Your code here
+    #     # Your code here
 
 
     def djb2(self, key):
         """
         DJB2 hash, 32-bit
-
-        Implement this, and/or FNV-1.
         """
         # Your code here
         hash = 5381
@@ -76,14 +74,14 @@ class HashTable:
     def put(self, key, value):
         """
         Store the value with the given key.
-
         Hash collisions should be handled with Linked List Chaining.
-
         Implement this.
         """
         # Your code here
+
         #######Without collision#####
         # self.hash_table[self.hash_index(key)] = value
+
         ######With collision########
         new_entry = HashTableEntry(key,value)
 
@@ -137,23 +135,20 @@ class HashTable:
         prev_node.next = cur_node.next
         self.num_of_items -= 1
 
- 
-
-
 
     def get(self, key):
         """
         Retrieve the value stored with the given key.
-
         Returns None if the key is not found.
-
         Implement this.
         """
         # Your code here
+
         ########Without collision#########
         # if(self.hash_table[self.hash_index(key)] == None):
         #     return None
         # else: return self.hash_table[self.hash_index(key)]
+
         #########With collision###########
         cur_node = self.hash_table[self.hash_index(key)]
 
@@ -175,50 +170,6 @@ class HashTable:
         Implement this.
         """
         # Your code here
-
-
-
-        ######Linked List functions#########
-    def linked_list_find(self, key):
-        cur_node = self.head
-
-        while cur_node is not None:
-            if cur_node.key == key:
-                return cur_node
-            cur_node.next
-
-        return None
-
-    def linked_list_delete(self, key):
-        cur_node = self.head
-
-        if cur_node.key == key:
-            self.head = cur_node.next
-            return cur_node
-
-        prev_node = cur_node
-        cur_node = cur_node.next
-
-        while cur_node is not None:
-            if cur_node.key == key:
-                prev_node.next = cur_node.next
-                return cur_node
-
-        return None
-
-    def linked_list_insert_at_head(self, key, value):
-        node = HashTableEntry(key, value)
-        node.next = self.head
-        self.head = node
-
-    def linked_list_insert_or_overwrite_value(self, key, value):
-        node = self.linked_list_find(value)
-
-        if node is None:
-            self.linked_list_insert_at_head(HashTableEntry(key, value))
-        else: 
-            node.value = value
-
 
 
 if __name__ == "__main__":
