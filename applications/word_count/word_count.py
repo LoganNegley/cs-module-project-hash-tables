@@ -1,5 +1,37 @@
 def word_count(s):
     # Your code here
+    ignore_chars = [
+    '"',
+     ':',
+     ';',
+     ',',
+     '.',
+     '-',
+     '+', 
+     '=',
+     '/',
+    #  '\',
+     '|',
+     '[', 
+     ']',
+     '{',
+     '}',
+     '(',
+     ')', 
+     '*',
+     '^' 
+     ]
+
+    count_string = s.lower().split()
+    table = {}
+
+    for word in count_string:
+        if word in table:
+            table[word] += 1
+        else:
+            table[word] = 1 
+
+    return table
 
 
 
