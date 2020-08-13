@@ -45,12 +45,8 @@ class HashTable:
     # def fnv1(self, key):
     #     """
     #     FNV-1 Hash, 64-bit
-
     #     Implement this, and/or DJB2.
     #     """
-
-    #     # Your code here
-
 
     def djb2(self, key):
         """
@@ -77,7 +73,6 @@ class HashTable:
         Hash collisions should be handled with Linked List Chaining.
         Implement this.
         """
-        # Your code here
 
         #######Without collision#####
         # self.hash_table[self.hash_index(key)] = value
@@ -96,12 +91,13 @@ class HashTable:
             prev_node = cur_node
             cur_node = cur_node.next
 
-        if cur_node is None:
-            prev_node.next = new_entry
-            self.num_of_items += 1
-        elif cur_node.key == key:
-            print(f"The key, '{key}' was found and will update to new value '{value}'")
-            cur_node.value == value
+            if cur_node is None:
+                prev_node.next = new_entry
+                self.num_of_items += 1
+            # elif cur_node.key == key:
+            else:
+                print(f"The key, '{key}' was found and will update to new value '{value}'")
+                cur_node.value = value
 
     def delete(self, key):
         """
@@ -109,7 +105,6 @@ class HashTable:
         Print a warning if the key is not found.
         Implement this.
         """
-        # Your code here
 
         ########## Without collision ###########
         # if(self.hash_table[self.hash_index(key)] == None):
@@ -124,6 +119,7 @@ class HashTable:
         if cur_node.key == key:
             self.hash_table[self.hash_index(key)] = cur_node.next
             self.num_of_items -= 1
+            return
 
         while cur_node is not None and cur_node.key != key:
             prev_node = cur_node
@@ -142,7 +138,6 @@ class HashTable:
         Returns None if the key is not found.
         Implement this.
         """
-        # Your code here
 
         ########Without collision#########
         # if(self.hash_table[self.hash_index(key)] == None):
