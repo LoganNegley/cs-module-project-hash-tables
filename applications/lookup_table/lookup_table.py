@@ -1,4 +1,6 @@
 # Your code here
+import random
+import math
 
 
 def slowfun_too_slow(x, y):
@@ -15,8 +17,12 @@ def slowfun(x, y):
     output, but completes quickly instead of taking ages to run.
     """
     # Your code here
+    table = {}
+    key = (x,y)
+    if key not in table:
+        table[key] = slowfun_too_slow(x,y)
 
-
+    return table[key]
 
 # Do not modify below this line!
 
